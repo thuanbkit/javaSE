@@ -21,7 +21,7 @@ public class ThreadDemo {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        // c1 tao thread
 //        ThreadB b = new ThreadB();
 //        b.start();
         dataShare = new Data();

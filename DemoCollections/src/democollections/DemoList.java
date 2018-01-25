@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package collections;
+package democollections;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,17 +13,14 @@ import model.Sinhvien;
  *
  * @author Adminis
  */
-public class Collections {
+public class DemoList {
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        // ArrayList khong dong bo luong
         List list = new ArrayList();
-        list.add("aa");
-        list.add("aa");
-        list.add("aa");
         list.add("aa");
         for (int i = 0; i < 10; i++) {
             list.add(new Sinhvien("nguyen van a" + i, "00" + i, "1" + i));
