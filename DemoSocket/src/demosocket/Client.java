@@ -5,6 +5,7 @@
  */
 package demosocket;
 
+import static demosocket.Server.socket;
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -33,42 +34,50 @@ public class Client {
             System.out.println("dang ket noi den client...");
             socket = new Socket("localhost", 6969);
             System.out.println("ket noi dc server");
+            // chi can quan tam den socket
             new Thread(new Runnable() {
                 @Override
                 public void run() {
                     try {
-                        bos = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
+                        bis = new BufferedReader(new InputStreamReader(socket.getInputStream()));
                         while (true) {
-                            System.out.println("Me:");
-                            String str = new Scanner(System.in).nextLine();
-                            bos.write(str);
-                            bos.newLine();
-                            bos.flush();
+                            String s = bis.readLine();
+                            System.out.println("Server:" + s);
                         }
+
                     } catch (IOException ex) {
                         Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
                     } finally {
                         try {
-                            socket.close();
-                        } catch (IOException ex) {
-                            Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
-                        }
-                        try {
-                            bos.close();
+                            bis.close();
                         } catch (IOException ex) {
                             Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
                         }
                     }
                 }
             }).start();
-            bis = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-            while (true) {
-                String s = bis.readLine();
-                System.out.println("Server:"+s);
-            }
 
+            bos = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
+            while (true) {
+                System.out.println("Me:");
+                String str = new Scanner(System.in).nextLine();
+                bos.write(str);
+                bos.newLine();
+                bos.flush();
+            }
         } catch (IOException ex) {
             Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                bos.close();
+            } catch (IOException ex) {
+                Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            try {
+                socket.close();
+            } catch (IOException ex) {
+                Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
 }

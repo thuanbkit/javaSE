@@ -21,3 +21,9 @@
 /DemoCollections/build/
 /DemoThread/build/
 /DemoIO/dist/
+/DemoRMI/nbproject/private/
+/DemoRMIClient/nbproject/private/
+/DemoRMIChuaInterface/nbproject/private/
+/DemoRMIChuaInterface/build/
+/DemoRMI/build/
+/DemoRMIClient/build/

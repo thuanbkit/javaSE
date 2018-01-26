@@ -17,6 +17,23 @@ public class DemoEnum {
     public static void main(String[] args) {
         // TODO code application logic here
         Thutrongtuan thu1= Thutrongtuan.ThuBa;
+        // enum co the dung switch
+        switch (thu1) {
+            case ThuBa:
+                
+                break;
+            case ThuHai:
+                
+                break;
+            case ThuTu:
+                
+                break;
+            case Thunam:
+                
+                break;
+            default:
+                throw new AssertionError();
+        }
     }
     
 }

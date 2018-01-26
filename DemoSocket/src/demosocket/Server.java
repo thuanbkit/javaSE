@@ -5,6 +5,7 @@
  */
 package demosocket;
 
+import static demosocket.Client.socket;
 import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -41,6 +42,7 @@ public class Server {
             System.out.println("Da ket noi");
             // chi quan tam den socket
             // từ server gửi data cho client
+            // 2 thang da ket noi voi nhau gi ta chi lam viec voi socket 2 dau
             new Thread(new Runnable() {
                 @Override
                 public void run() {
@@ -48,16 +50,14 @@ public class Server {
                         bis = new BufferedReader(new InputStreamReader(socket.getInputStream()));
                         while (true) {
                             String s = bis.readLine();
-                            System.out.println("Client:"+s);
+                            if(s != null) {
+                                System.out.println("Client:" + s);
+                            }
+                            
                         }
                     } catch (IOException ex) {
                         Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
                     } finally {
-                        try {
-                            socket.close();
-                        } catch (IOException ex) {
-                            Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
-                        }
                         try {
                             bis.close();
                         } catch (IOException ex) {
@@ -66,6 +66,7 @@ public class Server {
                     }
                 }
             }).start();
+
             bos = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
             while (true) {
                 System.out.print("Me:");
