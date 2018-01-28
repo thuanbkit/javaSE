@@ -5,6 +5,10 @@
  */
 package javaswing01;
 
+import java.awt.BorderLayout;
+import java.awt.FlowLayout;
+import java.awt.GridBagLayout;
+import java.awt.GridLayout;
 import java.awt.HeadlessException;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -16,7 +20,7 @@ import javax.swing.JTextField;
  *
  * @author thuandd
  */
-public class LoginFrame extends JFrame{
+public class LoginFrame_grid extends JFrame{
     JLabel jlUsername;
     JLabel jlPassword;
     JTextField jtfUsername;
@@ -24,7 +28,7 @@ public class LoginFrame extends JFrame{
     JButton jbtLogin;
     JButton jbtReset;
 
-    public LoginFrame() throws HeadlessException{
+    public LoginFrame_grid() throws HeadlessException{
         jlUsername = new JLabel("Username");
         jlPassword = new JLabel("Password");
         jtfUsername = new JTextField(10);
@@ -35,11 +39,16 @@ public class LoginFrame extends JFrame{
         this.setVisible(true);
         this.setAlwaysOnTop(true);
         this.setSize(300, 300);
+        this.getContentPane().setLayout(new GridLayout(3, 2));
         this.getContentPane().add(jlUsername);
         this.getContentPane().add(jtfUsername);
+        this.getContentPane().add(jlPassword);
+        this.getContentPane().add(jpfPasswordField);
+        this.getContentPane().add(jbtLogin);
+        this.getContentPane().add(jbtReset);
     }
     public static void main(String[] args) {
-        new LoginFrame();
+        new LoginFrame_grid();
     }
     
 }
